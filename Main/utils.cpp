@@ -9,7 +9,7 @@ bool isCoresNumberProper(const int coresNumber) {
 	return (coresNumber <= 4) && (coresNumber > 0);
 }
 
-bool loadDataFromFile(fstream &file, const string &fileName, vector <vector <float>> & vec, int & row, int & col) {
+bool loadDataFromFile(fstream &file, const string &fileName, vector <vector <float>> & vec) {
 	file.open(fileName, ios_base::in);
 
 	if (!file.good()) {
@@ -31,15 +31,13 @@ bool loadDataFromFile(fstream &file, const string &fileName, vector <vector <flo
 
 		vec.push_back(tmpVec);
 	}
-	row = vec.size();
-	col = vec.at(0).size();
 
 	file.close();
 	return true;
 }
 
-float** createArray (float ** &arr, int row, int col) {
-	arr = new float*[row];
+float** createArray (const int &row, const int &col) {
+	float** arr = new float*[row];
 
 	for (int i = 0; i < row; i++) {
 		arr[i] = new float[col];
@@ -48,14 +46,33 @@ float** createArray (float ** &arr, int row, int col) {
 	return arr;
 }
 
-void deleteArray (float ** &arr, int row) {
+void fillMatrix(float ** &arr, const vector <vector <float>> & vec) {
+	const int row = vec.size();
+	const int col = vec.at(0).size();
+
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < col; j++) {
+			arr[i][j] = vec[i][j];
+		}
+	}
+}
+
+void deleteMatrix(float ** &arr, const int row) {
 	for (int i = 0; i < row; i++) {
 		delete arr[i];
 	}
+
 	delete arr;
 }
 
-void fillMatrix(float ** &arr, int col) {
+float ** initMatrixes(fstream &file, const string &fileName, vector <vector <float>> & vec, int &row, int &col) {
+	loadDataFromFile(file, fileName, vec);
 
+	row = vec.size();
+	col = vec.at(0).size();
 
+	float** matrix = createArray(row, col);
+	fillMatrix(matrix, vec);
+
+	return matrix;
 }

@@ -3,13 +3,20 @@
 #include <fstream>
 
 using namespace std;
+using namespace chrono;
 
 bool checkArgumentsNumber(const int);
 
 bool isCoresNumberProper(const int);
 
-bool loadDataFromFile(fstream &, const string &, vector <vector <float>> &, int &, int &);
+bool loadDataFromFile(fstream &, const string &, vector <vector <float>> &);
 
-float** createArray(float ** &, int, int);
+float** createArray(const int &, const int &);
 
-void deleteArray(float ** &, int);
+void fillMatrix(float ** &, const vector <vector <float>> &);
+
+void deleteMatrix(float ** &, const int);
+
+float ** initMatrixes(fstream &, const string &, vector <vector <float>> &, int &, int &);
+
+float ** multiplyMatrixesCpp(float ** &, const int &, const int &, float ** &, const int &, const int &, const int &);
