@@ -18,5 +18,3 @@ void fillMatrix(float ** &, const vector <vector <float>> &);
 void deleteMatrix(float ** &, const int);
 
 float ** initMatrixes(fstream &, const string &, vector <vector <float>> &, int &, int &);
-
-float ** multiplyMatrixesCpp(float ** &, const int &, const int &, float ** &, const int &, const int &, const int &);
