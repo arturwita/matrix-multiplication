@@ -8,8 +8,6 @@
 + usage of threads
 + user can decide how many CPU cores are going to be used  
 
-## 
-
 ## Usage
 
 The program takes 3 arguments: 
