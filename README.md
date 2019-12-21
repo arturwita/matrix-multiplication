@@ -56,6 +56,6 @@ Invalid threads number. Please pass a value in the range of 1 to 64: 4
 Times of multiplying in assembly and C++ are showed in console. 
 
 ```
-Assembly procedure: 1280ns. 
-C++ procedure: 1440ns.
+Assembly procedure: 12ms. 
+C++ procedure: 40ms.
 ```
