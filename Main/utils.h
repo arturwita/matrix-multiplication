@@ -1,20 +1,28 @@
 #pragma once
 #include <string>
 #include <fstream>
+#include "CppDLL.h"
 
 using namespace std;
 using namespace chrono;
 
-bool checkArgumentsNumber(const int);
+bool isArgumentsNumberProper(const int);
 
-bool isCoresNumberProper(const int);
+bool isThreadsNumberProper(const int&);
 
-bool loadDataFromFile(fstream &, const string &, vector <vector <float>> &);
+Matrix* loadMatrix(const char*);
 
-float** createArray(const int &, const int &);
+Matrix* transposeMatrix(Matrix*&);
 
-void fillMatrix(float ** &, const vector <vector <float>> &);
+void alignMatrix(Matrix *&);
 
-void deleteMatrix(float ** &, const int);
+void saveMatrixToFile(Matrix*&, const string&);
 
-float ** initMatrixes(fstream &, const string &, vector <vector <float>> &, int &, int &);
+void printMatrix(Matrix*&);
+void printAlignedMatrix(Matrix*&);
+
+bool compareMatrixes(Matrix*&, Matrix*&);
+
+Matrix* initializeResultantMatrix(const int, const int);
+
+void deallocateMatrix(Matrix*&);

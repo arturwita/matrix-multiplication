@@ -2,27 +2,25 @@
 //
 
 #include "stdafx.h"
-#define LIBRARY_EXPORTS
+#include "CppDLL.h"
 
+void multiplyCpp(Matrix *leftMatrix, Matrix *rightMatrix, Matrix * resultantMatrix, const int lineOffset, const int rows) {
+	int l, m, n;
+	l = m = n = 0;
 
-float ** multiplyMatrixesCpp(float ** & firstMatrix, const int & firstsRows, const int & firstsCols,
-	float ** & secondMatrix, const int & secondsRows, const int & secondsCols, const int & coresNumber) {
+	const int rightOffset = lineOffset * rightMatrix->height;
+	const int leftOffset = lineOffset * leftMatrix->width;
 
-	float** result = new float*[firstsRows];
-
-	for (int i = 0; i < firstsRows; i++) {
-		result[i] = new float[secondsCols];
-	}
-
-	for (int i = 0; i < firstsRows; i++) {
-		for (int j = 0; j < secondsCols; j++) {
-			result[i][j] = 0;
-
-			for (int k = 0; k < firstsCols; k++) {
-				result[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
+	for (int k = 0; k < rows; k++) {
+		for (int i = 0; i < rightMatrix->height; i++) {
+			for (int j = 0; j < rightMatrix->width; j++) {
+				resultantMatrix->data[rightOffset + l + i] +=
+					leftMatrix->data[leftOffset + m + j] * rightMatrix->data[n + j];
 			}
+			n += rightMatrix->width;
 		}
+		n = 0;
+		l += rightMatrix->height;
+		m += leftMatrix->width;
 	}
-
-	return result;
 }
