@@ -80,7 +80,7 @@ RightMatrixLoop:
 
 LineLoop:
 	vmovdqu YMM6, ymmword ptr [R14+R12]		; move 8 floats from left matrix to YMM6
-	vmovdqu YMM7, ymmword ptr [R15+R13]		; move 8 floats from right matrix to YMM7
+	vmovdqu YMM7, ymmword ptr [R15+R13]		; move 8 floats from right matrix to YMM7 
 	vmulps YMM8, YMM6, YMM7					; multiply YMM6 by YMM7, save to YMM8
 	
 	vhaddps YMM8, YMM8, YMM8				; horizontally add YMM8+YMM8 and save to YMM8
